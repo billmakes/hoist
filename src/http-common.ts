@@ -1,9 +1,18 @@
 import axios from "axios"
+import { LocalStorageService } from './services/LocalStorageService'
 
-export default axios.create({
+const http = axios.create({
   baseURL: "http://localhost:4000/v1",
   headers: {
-    "Content-type": "application/json",
-    "Authorization": "Bearer F7OJCE3G5NMDT5LFE7R3B7BVPI",
+    "Content-Type": "application/json",
   }
 })
+
+const token = LocalStorageService.getAccessToken()
+
+if (token) {
+  http.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
+
+
+export default http
