@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useHistory } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { WorkoutService } from '../services/WorkoutService'
 import { ExerciseService } from '../services/ExerciseService'
@@ -37,10 +38,41 @@ function WorkoutDetails() {
     })
   }
 
+  const updateWorkout = () => {
+    if (workout.in_progress) {
+      WorkoutService.completeWorkout(id).then(() => {
+        setWorkout({ ...workout, in_progress: !workout.in_progress })
+        routeWorkouts()
+      })
+    } else {
+      WorkoutService.resumeWorkout(id).then(() => {
+        setWorkout({ ...workout, in_progress: !workout.in_progress })
+      })
+    }
+  }
+
+  const history = useHistory()
+  const routeWorkouts = () => {
+    history.push('/workouts')
+  }
+
+  const routeAddExercise = () => {
+    history.push(`/workouts/${id}/exercise`)
+  }
+
+  const deleteWorkout = () => {
+    WorkoutService.deleteWorkout(id).then(() => {
+      routeWorkouts()
+    })
+  }
+
   if (workout) {
     return (
       <div>
-        <h1>Workout</h1>
+        <div className="d-flex justify-content-between">
+          <h1>Workout</h1>
+          <Button onClick={routeAddExercise}>Add Exercise</Button>
+        </div>
         {workout.id}
         {workout.created_at}
         {workout.in_progress ? 'IN PROGRESS' : 'NOT STARTED'}
@@ -55,7 +87,8 @@ function WorkoutDetails() {
             ))}
         </ul>
         <div className="d-flex justify-content-center">
-          <Button>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
+          <Button variant="danger" onClick={() => deleteWorkout()}>Delete workout</Button>
+          <Button onClick={updateWorkout}>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
         </div>
       </div>
     )

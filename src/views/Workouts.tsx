@@ -1,17 +1,23 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { WorkoutService } from '../services/WorkoutService'
 import IWorkoutData from '../types/Workout'
 import WorkoutCard from '../components/WorkoutCard'
+import WorkoutsContext from '../WorkoutsContext'
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState<Array<IWorkoutData>>([]);
+  const workoutsContext = useContext(WorkoutsContext)
+
   useEffect(() => {
-    console.log('mounted workouts')
     getWorkouts()
   }, [])
 
   const getWorkouts = () => {
+    if (workoutsContext.workouts.length) {
+      console.log(workoutsContext.workouts, 'length')
+    }
     WorkoutService.getAll().then((res: any) => {
+      workoutsContext.workouts = res.data.workouts
       setWorkouts(res.data.workouts)
     })
   }
