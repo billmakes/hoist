@@ -19,7 +19,7 @@ function WorkoutCard(props: IWorkoutData) {
         {props.id}
         {props.in_progress ? 'in progress' : 'not started'}
         <div>
-          <Button onClick={() => routeDetails(props.id)}>Details</Button>
+          <Button variant="dark" onClick={() => routeDetails(props.id)}>Details</Button>
         </div>
       </Card.Body>
     </Card>

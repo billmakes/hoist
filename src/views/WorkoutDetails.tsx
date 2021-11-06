@@ -76,7 +76,7 @@ function WorkoutDetails() {
           <h5>
             {workout.in_progress ? 'IN PROGRESS' : 'NOT STARTED'}
           </h5>
-          <Button onClick={routeAddExercise}>Add Exercise</Button>
+          <Button variant="dark" onClick={routeAddExercise}>Add Exercise</Button>
         </div>
         <ul className="list-group">
           {exercises &&
@@ -90,7 +90,7 @@ function WorkoutDetails() {
         </ul>
         <div className="d-flex justify-content-center">
           <Button className="m-3" variant="danger" onClick={() => deleteWorkout()}>Delete workout</Button>
-          <Button className="m-3" onClick={updateWorkout}>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
+          <Button variant="dark" className="m-3" onClick={updateWorkout}>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
         </div>
       </div>
     )

@@ -63,7 +63,7 @@ function Home() {
           :
           <NoWorkouts />
       }
-      <Button onClick={() => startNewWorkout()}>Start New Workout</Button>
+      <Button variant="dark" onClick={() => startNewWorkout()}>Start New Workout</Button>
     </div>
   )
 }

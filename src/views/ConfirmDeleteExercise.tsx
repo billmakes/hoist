@@ -26,7 +26,7 @@ function ConfirmDeleteExercise() {
         </Card.Header>
         <div className="d-flex justify-content-between">
           <Button variant="secondary" onClick={() => routeWorkout()}>Cancel</Button>
-          <Button onClick={() => deleteExercise()}>Remove</Button>
+          <Button variant="dark" onClick={() => deleteExercise()}>Remove</Button>
         </div>
       </Card>
 

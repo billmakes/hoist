@@ -66,7 +66,7 @@ function AddExercise() {
 
       <div className="d-flex justify-content-between">
         <Button variant="secondary">Cancel</Button>
-        <Button onClick={() => addExercise()}>Add Exercise</Button>
+        <Button variant="dark" onClick={() => addExercise()}>Add Exercise</Button>
       </div>
     </div>
   )

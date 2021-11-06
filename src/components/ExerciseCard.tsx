@@ -154,7 +154,7 @@ function ExerciseCard(props: IExerciseData) {
           </div>
           <Button
             onClick={editExerciseHandler}
-            variant={editing ? 'primary' : 'outline-secondary'}
+            variant={editing ? 'dark' : 'outline-secondary'}
           >
             {editing ? 'Save' : 'Edit'}
           </Button>

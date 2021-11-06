@@ -35,16 +35,13 @@ function App() {
   return (
     <div>
       <AuthContext.Provider value={{ auth: auth, logout, login }}>
-        <Navbar bg="primary" variant="dark" className="mb-3">
-          <Container>
-            {auth ? 'Logged in' : 'not logged in'}
-            <Navbar.Brand href="/">Hoist</Navbar.Brand>
-            <Nav className="me-auto d-flex justify-content-between">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/workouts">Workouts</Nav.Link>
-              <LoginLogout />
-            </Nav>
-          </Container>
+        <Navbar bg="dark" variant="dark" className="mb-3">
+          <Navbar.Brand href="/">Hoist</Navbar.Brand>
+          <Nav className="me-auto d-flex justify-content-between">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/workouts">Workouts</Nav.Link>
+            <LoginLogout />
+          </Nav>
         </Navbar>
         <Container className="d-flex justify-content-center">
           <React.Fragment>
@@ -53,9 +50,9 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/workouts" component={Workouts} />
-                <Route path="/workouts/:id" component={WorkoutDetails} />
-                <Route path="/workouts/:id/exercise/:exercise_id/confirm" component={ConfirmDeleteExercise} />
-                <Route path="/workouts/:id/exercise" component={AddExercise} />
+                <Route exact path="/workouts/:id/exercise" component={AddExercise} />
+                <Route exact path="/workouts/:id" component={WorkoutDetails} />
+                <Route exact path="/workouts/:id/exercise/:exercise_id/confirm" component={ConfirmDeleteExercise} />
               </Switch>
             </Router>
           </React.Fragment>
