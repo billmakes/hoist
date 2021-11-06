@@ -69,13 +69,15 @@ function WorkoutDetails() {
   if (workout) {
     return (
       <div>
-        <div className="d-flex justify-content-between">
-          <h1>Workout</h1>
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <h5>
+            {new Date(workout.created_at).toLocaleDateString()}
+          </h5>
+          <h5>
+            {workout.in_progress ? 'IN PROGRESS' : 'NOT STARTED'}
+          </h5>
           <Button onClick={routeAddExercise}>Add Exercise</Button>
         </div>
-        {workout.id}
-        {workout.created_at}
-        {workout.in_progress ? 'IN PROGRESS' : 'NOT STARTED'}
         <ul className="list-group">
           {exercises &&
             exercises.map((exercise, index) => (
@@ -87,8 +89,8 @@ function WorkoutDetails() {
             ))}
         </ul>
         <div className="d-flex justify-content-center">
-          <Button variant="danger" onClick={() => deleteWorkout()}>Delete workout</Button>
-          <Button onClick={updateWorkout}>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
+          <Button className="m-3" variant="danger" onClick={() => deleteWorkout()}>Delete workout</Button>
+          <Button className="m-3" onClick={updateWorkout}>{workout.in_progress ? 'Finish Workout' : 'Resume Workout'}</Button>
         </div>
       </div>
     )

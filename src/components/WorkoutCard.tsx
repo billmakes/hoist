@@ -15,7 +15,7 @@ function WorkoutCard(props: IWorkoutData) {
         Workout
       </Card.Header>
       <Card.Body>
-        {props.created_at}
+        {new Date(props.created_at).toLocaleDateString()}
         {props.id}
         {props.in_progress ? 'in progress' : 'not started'}
         <div>

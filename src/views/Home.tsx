@@ -32,7 +32,7 @@ function Home() {
   const Workouts = () => {
     return (
       <div>
-        <h5>In progress Workouts</h5>
+        <h5>Workouts in progress</h5>
         <ul className="list-group">
           {workouts &&
             workouts.filter((workout) => workout.in_progress).map((workout, index) => (
@@ -57,7 +57,6 @@ function Home() {
 
   return (
     <div>
-      <h3>Home</h3>
       {
         workouts && workouts.length ?
           <Workouts />

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Home, Login, WorkoutDetails, Workouts, AddExercise, ConfirmDeleteExercise } from './views'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -15,9 +15,9 @@ function App() {
 
   function LoginLogout() {
     if (auth) {
-      return <Nav.Link onClick={logout} href="#login">Logout</Nav.Link>
+      return <Nav.Link onClick={logout} href="login">Logout</Nav.Link>
     } else {
-      return <Nav.Link href="#login">Login</Nav.Link>
+      return <Nav.Link href="login">Login</Nav.Link>
     }
   }
 
@@ -34,33 +34,33 @@ function App() {
 
   return (
     <div>
-      <Router>
-        <AuthContext.Provider value={{ auth: auth, logout, login }}>
-          <Navbar bg="primary" variant="dark" className="mb-3">
-            <Container>
-              {auth ? 'Logged in' : 'not logged in'}
-              <Navbar.Brand href="#/">Hoist</Navbar.Brand>
-              <Nav className="me-auto">
-                <Nav.Link href="#/">Home</Nav.Link>
-                <LoginLogout />
-                <Nav.Link href="#workouts">Workouts</Nav.Link>
-              </Nav>
-            </Container>
-          </Navbar>
-          <Container className="d-flex justify-content-center">
-            <React.Fragment>
+      <AuthContext.Provider value={{ auth: auth, logout, login }}>
+        <Navbar bg="primary" variant="dark" className="mb-3">
+          <Container>
+            {auth ? 'Logged in' : 'not logged in'}
+            <Navbar.Brand href="/">Hoist</Navbar.Brand>
+            <Nav className="me-auto d-flex justify-content-between">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/workouts">Workouts</Nav.Link>
+              <LoginLogout />
+            </Nav>
+          </Container>
+        </Navbar>
+        <Container className="d-flex justify-content-center">
+          <React.Fragment>
+            <Router>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/workouts" component={Workouts} />
+                <Route path="/workouts/:id" component={WorkoutDetails} />
                 <Route path="/workouts/:id/exercise/:exercise_id/confirm" component={ConfirmDeleteExercise} />
                 <Route path="/workouts/:id/exercise" component={AddExercise} />
-                <Route path="/workouts/:id" component={WorkoutDetails} />
               </Switch>
-            </React.Fragment>
-          </Container>
-        </AuthContext.Provider>
-      </Router>
+            </Router>
+          </React.Fragment>
+        </Container>
+      </AuthContext.Provider>
     </div >
   )
 }

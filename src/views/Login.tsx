@@ -41,7 +41,7 @@ function Login() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submit}>
+        <Button variant="primary" onClick={submit}>
           Login
         </Button>
       </Form>

@@ -138,8 +138,8 @@ function ExerciseCard(props: IExerciseData) {
             ))
           }
         </div>
-        <div>
-          {setsCompleted() ? 'ALL DONE' : 'not done yet'}
+        <div className="mt-2">
+          {setsCompleted() ? <Button variant="success">ALL DONE</Button> : ''}
         </div>
       </div>
     )
