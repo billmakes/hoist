@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Home, Login, WorkoutDetails, Workouts, AddExercise, ConfirmDeleteExercise } from './views'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import Routes from './Routes'
 import { LocalStorageService } from './services/LocalStorageService'
 import http from './http-common'
 import AuthContext from './AuthContext'
@@ -23,7 +23,6 @@ function App() {
 
   function login() {
     setAuth(true)
-    console.log(auth, 'login')
   }
 
   function logout() {
@@ -47,12 +46,7 @@ function App() {
           <React.Fragment>
             <Router>
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/workouts" component={Workouts} />
-                <Route exact path="/workouts/:id/exercise" component={AddExercise} />
-                <Route exact path="/workouts/:id" component={WorkoutDetails} />
-                <Route exact path="/workouts/:id/exercise/:exercise_id/confirm" component={ConfirmDeleteExercise} />
+                <Routes />
               </Switch>
             </Router>
           </React.Fragment>
