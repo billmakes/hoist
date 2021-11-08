@@ -39,14 +39,16 @@ function WorkoutDetails() {
   }
 
   const updateWorkout = () => {
-    if (workout.in_progress) {
+    if (workout && workout.in_progress) {
       WorkoutService.completeWorkout(id).then(() => {
         setWorkout({ ...workout, in_progress: !workout.in_progress })
         routeWorkouts()
       })
     } else {
       WorkoutService.resumeWorkout(id).then(() => {
-        setWorkout({ ...workout, in_progress: !workout.in_progress })
+        if (workout) {
+          setWorkout({ ...workout, in_progress: !workout.in_progress })
+        }
       })
     }
   }
